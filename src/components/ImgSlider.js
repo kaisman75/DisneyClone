@@ -23,15 +23,16 @@ export default class SimpleSlider extends Component {
     return (
          <div>
         <Carousel {...settings}>
-         
+       
           {imgeSlider.map((elem)=>{
               const{img}=elem;
               return(
-                
+                  <Warp>
                   <img src={img} alt=""/>
-                
+                 </Warp>
               )
           })}
+         
           </Carousel>
           </div>
         
@@ -40,13 +41,25 @@ export default class SimpleSlider extends Component {
   }
 }
 const Carousel=styled(slider)`
-slick-slider{
-    overflot:visible;
-  .slick-active button :before{
-  background-color:#fff;
-}
-}
 
-
+.slick-list{
+   overflow:visible;
+ 
+}
+ button {
+      z-index:1;
+  }
+ li.slick-active button:before{
+     color:#fff;
+ }
+`
+const Warp=styled.div`
+img{
+    width:100%;
+    height:100%; 
+    border:4px solid transparent;
+    border-radius:20px;
+    box-shadow: rgb(0 15 0 /69%) 0px 26px 30px -10px;
+}
 `
 
