@@ -3,7 +3,7 @@ import slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styled from 'styled-components';
-
+import Viewers from './Viewers';
 
 export default class SimpleSlider extends Component {
   render() {
@@ -12,7 +12,8 @@ export default class SimpleSlider extends Component {
       infinite: true,
       speed: 500,
       slidesToShow: 1,
-      slidesToScroll: 1
+      slidesToScroll: 1,
+      autoplay:true
     };
     const imgeSlider=[
         {img:"/images/slider-badag.jpg"},
@@ -34,6 +35,7 @@ export default class SimpleSlider extends Component {
           })}
          
           </Carousel>
+          <Viewers/>
           </div>
         
    
