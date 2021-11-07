@@ -1,15 +1,22 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
     return (
         <Nav>
+            <Link to="/">
           <Logo src="images/logo.svg"/>
+           </Link>
            <NavMenu>
-               <a>
+          
+               <a href='/'>
+                   
                    <img src="/images/home-icon.svg" alt="" />
                    <span>Home</span>
+                   
                </a>
+               
                <a>
                    <img src="/images/movie-icon.svg" alt="" />
                    <span>Movie</span>
@@ -43,14 +50,14 @@ export default Header
 
 const Nav=styled.div`
 height:70px;
-background:black;
+background:#090b13;
 display: flex;
 align-items: center;
-justify-content:space-around;
+justify-content: space-between;
+padding: 0 36px;
 `
 const Logo=styled.img`
     width: 70px;
-    padding:0 36px;
     cursor:pointer;
 `
 
@@ -60,11 +67,13 @@ width:70%;
 justify-content: space-evenly;
 
 
-a{
+ a{
     width:70px;
     padding: 0 12px;
     display: flex;
     align-items: center;
+    text-decoration:none;
+    color:#fff;
   
     cursor:pointer;
     img{
