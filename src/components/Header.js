@@ -9,7 +9,7 @@ const Header = () => {
           <Logo src="images/logo.svg"/>
            </Link>
            <NavMenu>
-          
+           
                <a href='/'>
                    
                    <img src="/images/home-icon.svg" alt="" />
@@ -39,8 +39,9 @@ const Header = () => {
                </a>
 
            </NavMenu>
-
+                    <Link to="/Login">
                       <Myimg src="images/MyImg.jpg"  />
+                      </Link>
         </Nav>
        
     )
@@ -115,4 +116,7 @@ const Myimg=styled.img`
 width:48px;
 height:48px;
 border-radius:50px;
+&:hover{
+    cursor:pointer;
+}
 `
