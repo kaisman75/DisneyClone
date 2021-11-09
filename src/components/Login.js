@@ -46,15 +46,21 @@ const Cta1=styled.img`
 width:100%;
 height:50%;
 `
-const Cta2=styled.button`
+const Cta2=styled.a`
 width:80%;
 height:40%;
 border-radius:4px;
-background-color: #0392f8;
+background-color:#0958da;
 margin:20px 0;
+text-align:center;
 padding :10px;
 text-transform: uppercase;
 cursor:pointer;
+transition:all 250ms;
+letter-spacing:1.5px;
+&:hover{
+    background-color: #0392f8;
+}
 `
 const Cta3=styled.img`
 width:100%;

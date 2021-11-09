@@ -75,14 +75,14 @@ justify-content: space-evenly;
     align-items: center;
     text-decoration:none;
     color:#fff;
-  
+    
     cursor:pointer;
     img{
         height:20px;
     }
     span{
          font-size:13px;
-         letter-spacing:1.42px;
+         letter-spacing:1.5px;
          position:relative;
     
       &:after{
