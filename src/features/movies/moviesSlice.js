@@ -2,19 +2,21 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState={
-   cardImgs:[]
+   movies:[]
 };
 
 
 const movieSlice=createSlice({
     name:"movie",
     initialState,
-    reducers:{setMovie:(state,action)=>{
-        state.cardImgs=action.payload;
+    reducers:{ setMovies: (state, action) => {
+        state.movies = action.payload;
+        
+      },
     }}
 
-});
+);
 export const{setMovies}=movieSlice.actions;
-export const selctMovies=(state)=>state.movie.cardImgs;
+
 export default movieSlice.reducer;
 

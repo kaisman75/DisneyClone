@@ -1,76 +1,28 @@
 import React from 'react'
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
+import {useSelector} from "react-redux"
+import { Params } from 'react-router'
 
 const Movies = () => {
+    const movies = useSelector((state)=>state.movies);
+    console.log(movies)
     return (
         <Container>
             <h4>Recommended fro you</h4>
             <Content>
-
-              
-            <Wrap>
-           <img src="https://journalmetro.com/wp-content/uploads/2021/02/les-simpson-e1612213690843.jpg?w=1051"/>
-           </Wrap>
-           <Link to="/Detail"> 
-           <Wrap>
-           <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/512BC5EA420AAE31C918134C287A125ABAFFE83C44EA035ED22BD48B8A83B099/scale?width=2880&aspectRatio=1.78&format=jpeg"/>
-           </Wrap> 
-           </Link>
-           <Wrap>
-           <img src="https://journalmetro.com/wp-content/uploads/2021/02/les-simpson-e1612213690843.jpg?w=1051"/>
-           </Wrap>
-           <Wrap>
-           <img src="https://journalmetro.com/wp-content/uploads/2021/02/les-simpson-e1612213690843.jpg?w=1051"/>
-           </Wrap>
-           <Wrap>
-           <img src="https://journalmetro.com/wp-content/uploads/2021/02/les-simpson-e1612213690843.jpg?w=1051"/>
-           </Wrap>
-           <Wrap>
-           <img src="https://journalmetro.com/wp-content/uploads/2021/02/les-simpson-e1612213690843.jpg?w=1051"/>
-           </Wrap>
-           <Wrap>
-           <img src="https://journalmetro.com/wp-content/uploads/2021/02/les-simpson-e1612213690843.jpg?w=1051"/>
-           </Wrap>
-           <Wrap>
-           <img src="https://journalmetro.com/wp-content/uploads/2021/02/les-simpson-e1612213690843.jpg?w=1051"/>
-           </Wrap>
-           <Wrap>
-           <img src="https://journalmetro.com/wp-content/uploads/2021/02/les-simpson-e1612213690843.jpg?w=1051"/>
-           </Wrap>
-           <Wrap>
-           <img src="https://journalmetro.com/wp-content/uploads/2021/02/les-simpson-e1612213690843.jpg?w=1051"/>
-           </Wrap>
-           <Wrap>
-           <img src="https://journalmetro.com/wp-content/uploads/2021/02/les-simpson-e1612213690843.jpg?w=1051"/>
-           </Wrap>
-           <Wrap>
-           <img src="https://journalmetro.com/wp-content/uploads/2021/02/les-simpson-e1612213690843.jpg?w=1051"/>
-           </Wrap>
-           <Wrap>
-           <img src="https://journalmetro.com/wp-content/uploads/2021/02/les-simpson-e1612213690843.jpg?w=1051"/>
-           </Wrap>
-           <Wrap>
-           <img src="https://journalmetro.com/wp-content/uploads/2021/02/les-simpson-e1612213690843.jpg?w=1051"/>
-           </Wrap>
-           <Wrap>
-           <img src="https://journalmetro.com/wp-content/uploads/2021/02/les-simpson-e1612213690843.jpg?w=1051"/>
-           </Wrap>
-           <Wrap>
-           <img src="https://journalmetro.com/wp-content/uploads/2021/02/les-simpson-e1612213690843.jpg?w=1051"/>
-           </Wrap>
-           <Wrap>
-           <img src="https://journalmetro.com/wp-content/uploads/2021/02/les-simpson-e1612213690843.jpg?w=1051"/>
-           </Wrap>
-           <Wrap>
-           <img src="https://journalmetro.com/wp-content/uploads/2021/02/les-simpson-e1612213690843.jpg?w=1051"/>
-           </Wrap>
-           <Wrap>
-           <img src="https://journalmetro.com/wp-content/uploads/2021/02/les-simpson-e1612213690843.jpg?w=1051"/>
-           </Wrap>
-           <Wrap>
-           <img src="https://journalmetro.com/wp-content/uploads/2021/02/les-simpson-e1612213690843.jpg?w=1051"/>
-           </Wrap>
+             {movies.map(movie=>{
+                 const{id,title,cardImg,ytLink,titleImg,description,subTitle,type,backgroundImg}=movie;
+                 return(
+                    <Link to="/Detail" >
+                    <Wrap id={id}>
+                    <img src={cardImg} />
+                    </Wrap>
+                    </Link>
+                 )
+             })
+            }
+           
            </Content>
         </Container>
     )
