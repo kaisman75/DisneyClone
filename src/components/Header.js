@@ -110,7 +110,9 @@ justify-content: space-evenly;
 
     
 }
-
+@media(max-width:780px){
+    display:none;
+}
 `
 const Myimg=styled.img`
 width:48px;
