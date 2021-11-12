@@ -9,19 +9,18 @@ import { useDispatch } from 'react-redux';
 import { setMovies } from '../features/movies/moviesSlice';
 
 const Home = () => {
-
-    const dispatch =useDispatch();
-
+    const dispatch = useDispatch();
 useEffect(() => {
    onSnapshot(collection(db,"movies"),(snapshot)=>{
         let movieRef=snapshot.docs.map((doc)=>{
             return{id:doc.id,...doc.data()};
-           
+            
         });
-         dispatch(setMovies(movieRef));
-         
+        
+         dispatch(setMovies(movieRef))
+
     });
-   
+          
 }, []);
 
     return (

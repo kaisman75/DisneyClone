@@ -2,11 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 import {useSelector} from "react-redux"
-import { Params } from 'react-router'
+
 
 const Movies = () => {
     const movies = useSelector((state)=>state.movies);
-    console.log(movies)
+   
     return (
         <Container>
             <h4>Recommended fro you</h4>
@@ -14,8 +14,8 @@ const Movies = () => {
              {movies.map(movie=>{
                  const{id,title,cardImg,ytLink,titleImg,description,subTitle,type,backgroundImg}=movie;
                  return(
-                    <Link to="/Detail" >
-                    <Wrap id={id}>
+                    <Link to={`/Detail/${id}`} >
+                    <Wrap>
                     <img src={cardImg} />
                     </Wrap>
                     </Link>

@@ -13,10 +13,11 @@ const movieSlice=createSlice({
         state.movies = action.payload;
         
       },
+    
     }}
 
 );
-export const{setMovies}=movieSlice.actions;
+export const{setMovies,setMovie}=movieSlice.actions;
 
 export default movieSlice.reducer;
 

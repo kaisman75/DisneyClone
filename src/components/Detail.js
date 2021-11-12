@@ -1,8 +1,18 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import styled from 'styled-components'
+import {useSelector} from "react-redux"
+import{ useParams }from 'react-router-dom';
+
 const Detail=()=>{
+   
+    const movies = useSelector((state)=>state.movies);
+    const {id}=useParams();
+    const Movie = Object.assign({}, movies.filter(x=> x.id===id))
+
+    console.log({...Movie}) 
     return (
-        <Container>
+        <Container> 
+           
         <Background>
             <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/512BC5EA420AAE31C918134C287A125ABAFFE83C44EA035ED22BD48B8A83B099/scale?width=2880&aspectRatio=1.78&format=jpeg" alt="" />
         </Background>
