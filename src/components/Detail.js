@@ -1,24 +1,43 @@
-import React,{useEffect} from 'react'
+import React,{useState,useEffect} from 'react'
 import styled from 'styled-components'
-import {useSelector} from "react-redux"
-import{ useParams }from 'react-router-dom';
+import {useDispatch, useSelector } from 'react-redux'
+import { onSnapshot,collection, doc } from '@firebase/firestore';
+import db from "../firebase"
+import { useParams } from 'react-router'
+import { setMovies } from '../features/movies/moviesSlice';
 
 const Detail=()=>{
-   
-    const movies = useSelector((state)=>state.movies);
+    const dispatch=useDispatch();
     const {id}=useParams();
-    const Movie = Object.assign({}, movies.filter(x=> x.id===id))
+    const[Movie,setMovie]=useState({});
+    useEffect(() => {
+        onSnapshot(collection(db,"movies"),(snapshot)=>{
+             let movieRef = snapshot.docs.map((doc)=>{
+                return{id:doc.id,...doc.data()};
 
-    console.log({...Movie}) 
-    return (
-        <Container> 
+             });
+            const movieItem=movieRef.filter(item=>item.id===id);
+            setMovie(movieItem[0])
            
+            
+           
+         });
+               
+     }, []);
+     console.log(Movie)
+    
+
+    return (
+        <Container>
+         
         <Background>
-            <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/512BC5EA420AAE31C918134C287A125ABAFFE83C44EA035ED22BD48B8A83B099/scale?width=2880&aspectRatio=1.78&format=jpeg" alt="" />
+            <img src={Movie.backgroundImg} alt="" />
         </Background>
         <ImgTitle>
-          <img src="/images/viewers-starwars.png" alt="" />
-        
+          <img src={Movie.titleImg} alt="" />
+          <h1>{Movie.title}</h1>
+          <h3>{Movie.subTitle}</h3>
+          <p>{Movie.description}</p>
         </ImgTitle>
         <ControleBtn>
             <PlayBtn>
@@ -70,14 +89,19 @@ const Background=styled.div`
 `
 const ImgTitle=styled.div`
    align-items: center;
-   width:50%;
-   height:50%;
+   width:30%;
+   height:30%;
+   img{
+       width:100%;
+       height:100%;
+   }
 } 
 `
 const ControleBtn=styled.div`
 width:40%;
 height:30%;
 display:flex;
+margin-top :20px;
 justify-content: space-around;
 align-items: center;
 @media(max-width:780px){

@@ -16,7 +16,7 @@ useEffect(() => {
             return{id:doc.id,...doc.data()};
             
         });
-        
+         console.log(movieRef)
          dispatch(setMovies(movieRef))
 
     });

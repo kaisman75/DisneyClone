@@ -13,8 +13,13 @@ const movieSlice=createSlice({
         state.movies = action.payload;
         
       },
+      setMovie: (state, action) => {
+        state.movies = action.payload.movie;
+        
+      },
     
-    }}
+    }
+  }
 
 );
 export const{setMovies,setMovie}=movieSlice.actions;
