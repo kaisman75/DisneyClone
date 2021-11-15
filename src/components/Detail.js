@@ -1,10 +1,10 @@
 import React,{useState,useEffect} from 'react'
 import styled from 'styled-components'
-import {useDispatch, useSelector } from 'react-redux'
+import {useDispatch} from 'react-redux'
 import { onSnapshot,collection, doc } from '@firebase/firestore';
 import db from "../firebase"
 import { useParams } from 'react-router'
-import { setMovies } from '../features/movies/moviesSlice';
+
 
 const Detail=()=>{
     const dispatch=useDispatch();

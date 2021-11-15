@@ -1,47 +1,103 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import { Link,useNavigate } from 'react-router-dom'
+import { selectUserName,selectUserPhoto } from '../features/User/userSlice'
+import {useDispatch, useSelector } from 'react-redux';
+import { getAuth,signInWithPopup,GoogleAuthProvider } from "firebase/auth";
+import { provider } from '../firebase';
+import {setUserLogin , setSignOut} from "../features/User/userSlice"
+
+
 
 const Header = () => {
+    const userName = useSelector(selectUserName);
+    const userPhoto=useSelector(selectUserPhoto);
+    const navigate=useNavigate() 
+    const dispatch = useDispatch();
+    const signIn =()=>{
+        const auth = getAuth();
+        signInWithPopup(auth, provider)
+          .then((result) => {
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
+            // The signed-in user info.
+            const user = result.user;
+            dispatch( setUserLogin({
+                name:user.displayName,
+                Email:user.email,
+                photo:user.photoURL
+            })
+            
+            )
+            navigate("/")
+            // ...
+          })
+          
+          .catch((error) => {
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // The email of the user's account used.
+            const email = error.email;
+            // The AuthCredential type that was used.
+            const credential = GoogleAuthProvider.credentialFromError(error);
+            // ...
+          });
+        }
+        const signOut=()=>{
+            dispatch(setSignOut());
+            navigate("/Login")
+                }
     return (
         <Nav>
             <Link to="/">
           <Logo src="images/logo.svg"/>
            </Link>
-           <NavMenu>
+           {!userName?  <Login onClick={signIn}>Login</Login> :
+           <>
+            <NavMenu>
            
-               <a href='/'>
-                   
-                   <img src="/images/home-icon.svg" alt="" />
-                   <span>Home</span>
-                   
-               </a>
+           <a href='/'>
                
-               <a>
-                   <img src="/images/movie-icon.svg" alt="" />
-                   <span>Movie</span>
-               </a>
-               <a>
-                   <img src="/images/series-icon.svg" alt="" />
-                   <span>Series</span>
-               </a>
-               <a>
-                   <img src="/images/search-icon.svg" alt="" />
-                   <span>Search</span>
-               </a>
-               <a>
-                   <img src="/images/original-icon.svg" alt="" />
-                   <span>Original</span>
-               </a>
-               <a>
-                   <img src="/images/watchlist-icon.svg" alt="" />
-                   <span>Watchlist</span>
-               </a>
+               <img src="/images/home-icon.svg" alt="" />
+               <span>Home</span>
+               
+           </a>
+           
+           <a>
+               <img src="/images/movie-icon.svg" alt="" />
+               <span>Movie</span>
+           </a>
+           <a>
+               <img src="/images/series-icon.svg" alt="" />
+               <span>Series</span>
+           </a>
+           <a>
+               <img src="/images/search-icon.svg" alt="" />
+               <span>Search</span>
+           </a>
+           <a>
+               <img src="/images/original-icon.svg" alt="" />
+               <span>Original</span>
+           </a>
+           <a>
+               <img src="/images/watchlist-icon.svg" alt="" />
+               <span>Watchlist</span>
+           </a>
 
-           </NavMenu>
-                    <Link to="/Login">
-                      <Myimg src="images/MyImg.jpg"  />
-                      </Link>
+       </NavMenu>
+               <Logcontent>
+
+                <Link to="/Login" onClick={signOut}>
+                  <Myimg src={userPhoto} />
+                  </Link>
+
+                  <span>{userName}</span>
+                  </Logcontent>
+           </>
+           }
+          
         </Nav>
        
     )
@@ -114,11 +170,30 @@ justify-content: space-evenly;
     display:none;
 }
 `
+const Logcontent=styled.div`
+dispaly:flex;
+
+`
+
 const Myimg=styled.img`
 width:48px;
 height:48px;
 border-radius:50px;
 &:hover{
     cursor:pointer;
+}
+`
+const Login=styled.button`
+width:100px;
+height:50px;
+border:1px solid white;
+border-radius:5px;
+color:white;
+background-color:black;
+cursor:pointer;
+text-transform: uppercase;
+&:hover{
+    background-color:white;
+    color:black;
 }
 `

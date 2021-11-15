@@ -2,10 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 import {useSelector} from "react-redux"
+import { selectMovie } from '../features/movies/moviesSlice'
 
 
 const Movies = () => {
-    const movies = useSelector((state)=>state.movies);
+    const movies = useSelector(selectMovie);
    
     return (
         <Container>

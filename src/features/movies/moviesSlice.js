@@ -13,16 +13,12 @@ const movieSlice=createSlice({
         state.movies = action.payload;
         
       },
-      setMovie: (state, action) => {
-        state.movies = action.payload.movie;
-        
-      },
-    
+      
     }
   }
 
 );
-export const{setMovies,setMovie}=movieSlice.actions;
-
+export const{setMovies}=movieSlice.actions;
+export const selectMovie = (state)=>state.movie.movies;
 export default movieSlice.reducer;
 
